@@ -26,7 +26,7 @@ tags:
 ## Hexo 写作
 
 ```shell
-$ hexo new [layout] <title>  # 创建一篇新文章或者新页面
+hexo new [layout] <title>  # 创建一篇新文章或者新页面
 ```
 
 layout: 文章的布局，通过_config.yml中的default_layout参数指定默认布局
