@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Gs-Blog
 subtitle: ''
 description: ''
 keywords:
 author: gs-bupt
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -106,3 +106,6 @@ deploy:
   type: 'git'
   repo: git@github.com:gs-bupt/gs-bupt.github.io.git
   branch: main
+
+
+all_minifier: true
