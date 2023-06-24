@@ -4,11 +4,74 @@
   
   
   <entry>
+    <title>git使用</title>
+    <link href="/2023/06/24/git%E4%BD%BF%E7%94%A8/"/>
+    <url>/2023/06/24/git%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Git分布式版本控制工具">Git分布式版本控制工具</h2><h3 id="Git简介">Git简介</h3><p>Git是用C语言开发的分布式版本控制系统，所谓版本控制系统，就是可以储存一个文件在不同时间的版本，记录每次文件的改动，可以根据需要，随时切换到之前的版本(比如在编写Word文档的过程中，能记录下你每一次保存下来的记录，如果你对于现在的修改不满意，就可以回退到之前保存的版本)。为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。</p><h3 id="Git安装">Git安装</h3><p>Linux安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install git<br></code></pre></td></tr></table></figure><p>Windows通过Git官网下载</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">配置全局用户名和邮箱<br>git config --global user.name &quot;Your Name&quot;<br>git config --global user.email &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">配置当前仓库用户名和邮箱<br>git config user.name &quot;gitlab’s Name&quot; <br>git config user.email &quot;gitlab@xx.com&quot;<br></code></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --list   # 查看配置列表<br></code></pre></td></tr></table></figure><h3 id="创建版本库">创建版本库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir learngit      # 创建文件夹<br>cd learngit         # 切换到新建的文件夹<br>git init            # 创建一个空的Git仓库或重新初始化已有仓库<br></code></pre></td></tr></table></figure><p>Git只能跟踪文本文件的改动，比如TXT文件、网页、程序代码等等。关于二进制文件，可以由Git进行管理，但是无法跟踪文件的变化。</p><h3 id="Git简单使用">Git简单使用</h3><p>添加文件到Git仓库，分两步：</p><p>使用命令 <code>git add &lt;file&gt;</code>添加内容到索引，注意，可反复多次使用，添加多个文件；使用命令 <code>git commit -m &lt;message &gt;</code>记录仓库的修改。要随时掌握工作区的状态，使用<code>git status</code>命令。如果<code>git status</code>告诉你有文件被修改过，用<code>git diff</code>可以查看修改内容。</p><h3 id="工作区和暂存区">工作区和暂存区</h3><p>工作区(Working Directory): 先前创建的learngit就是一个工作区目录版本库(Repository): 在工作区目录下有一个隐藏目录.git, 是Git的版本库。</p><img src="/2023/06/24/git%E4%BD%BF%E7%94%A8/image.png" class="" title="工作区和版本库"><p><code>git add</code>命令实际上就是把要提交的所有修改放到暂存区(Stage)，然后，执行<code>git commit</code>就可以一次性把暂存区的所有修改提交到分支。将暂存区的修改提交后会清空暂存区。</p><img src="/2023/06/24/git%E4%BD%BF%E7%94%A8/image-2.png" class="" title="Alt text"><h3 id="版本回退">版本回退</h3><ol><li class="lvl-3"><p>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</p></li><li class="lvl-3"><p>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</p></li><li class="lvl-3"><p>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</p></li></ol><h3 id="丢弃修改">丢弃修改</h3><ol><li class="lvl-3"><p>当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令<code>git checkout -- file</code>。</p></li><li class="lvl-3"><p>当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令<code>git reset HEAD &lt;file&gt;</code>，就回到了场景1，第二步按场景1操作。</p></li><li class="lvl-3"><p>已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>第三方登陆流程</title>
+    <link href="/2023/06/24/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86%E6%B5%81%E7%A8%8B/"/>
+    <url>/2023/06/24/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86%E6%B5%81%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>Web设计</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AlexNet</title>
+    <link href="/2023/06/24/AlexNet/"/>
+    <url>/2023/06/24/AlexNet/</url>
+    
+    <content type="html"><![CDATA[<h2 id="引言">引言</h2><p>2012年，Alex Krizhevsky等人提出了AlexNet网络，并以很大的优势赢得了ImageNet2012图像识别挑战赛的冠军。同时，AlexNet是第⼀个在⼤规模视觉竞赛中击败传统计算机视觉模型的⼤型神经⽹络。</p><h2 id="网络结构">网络结构</h2><p>AlexNet由5个卷积层、3个池化Pooling层和3个全连接层构成。</p><h2 id=""></h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>计算机视觉</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>即时通讯</title>
     <link href="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/"/>
     <url>/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/</url>
     
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实现即时通讯常见的有四种方式，分别是：轮询、长轮询(comet)、长连接(SSE)、WebSocket。</p><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><p>拉模式，不管服务端数据有无更新，客户端利用Ajex定时发送请求拉取一次数据，可能有更新数据返回，也可能什么都没有。<br><strong>优点</strong>: 后端编码简单<br><strong>缺点</strong>: 数据延迟、消耗资源过大、请求次数太多</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image.png" class="" title="轮询"><h3 id="长轮询-comet"><a href="#长轮询-comet" class="headerlink" title="长轮询(comet)"></a>长轮询(comet)</h3><p>客户端发起长轮询，如果服务端的数据没有发生变更，会hold住请求，直到服务端的数据发生变化，或者等待一定时间超时才会返回。返回后，客户端再发起下一次长轮询请求监听。<br><strong>优点</strong>:</p><ul><li>相较于轮询基本不存在消息延迟，请求次数降低很多</li><li>长轮询是在 XMLHttpRequest 之后实现的，它几乎得到了设备的普遍支持，因此通常很少需要有进一步的备选方案，在很多场景下，可以作为即时通信的最简单实现方案和兜底兼容方案。</li></ul><p><strong>缺点</strong>:服务器一直保持连接会消耗资源，需要同时维护多个线程，而服务器所能承载的 TCP 连接是有上限的，所以这种轮询很容易导致连接上限。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-2.png" class="" title="长轮询"><h3 id="长连接-SSE"><a href="#长连接-SSE" class="headerlink" title="长连接(SSE)"></a>长连接(SSE)</h3><p>客户端和服务端建立连接后不进行断开，之后客户端再次访问这个服务端上的内容时，继续使用这一条连接通道<br><strong>优点</strong>: 消息即时到达，不发无用请求<br><strong>缺点</strong>: 与长轮询一样，服务器一直保持连接是会消耗资源的，如果有大量的长连接的话，对于服务器的消耗是巨大的，而且服务器承受能力是有上限的，不可能维持无限个长连接。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-3.png" class="" title="SSE"><h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><p>客户端向服务器发送一个携带特殊信息的请求头（Upgrade:WebSocket ）建立连接，建立连接后双方即可实现自由的实时双向通信。<br><strong>优点</strong>:</p><ul><li>较少的控制开销。在连接创建后，服务器和客户端之间交换数据时，用于协议控制的数据包头部相对较小。</li><li>更强的实时性。由于协议是全双工的，所以服务器可以随时主动给客户端下发数据。相对于HTTP请求需要等待客户端发起请求服务端才能响应，延迟明显更少；即使是和Comet等类似的长轮询比较，其也能在短时间内更多次地传递数据。</li><li>保持连接状态。与HTTP不同的是，Websocket需要先创建连接，这就使得其成为一种有状态的协议，之后通信时可以省略部分状态信息。而HTTP请求可能需要在每个请求都携带状态信息（如身份认证等）。</li></ul><p><strong>缺点</strong>: 相对来说，开发成本和难度更高。例如，当连接终止时，WebSockets 无法自动恢复连接。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-4.png" class="" title="WebSocket"><h2 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h2><p>长轮询挂起请求，等待新数据更新后再响应的处理方式虽然能减少浏览器的请求次数，并带来即时性，但是如果使用同步处理请求的方式，挂起请求则代表了线程的阻塞，有多少长轮询请求未响应就代表要阻塞多少个Servlet线程。所以长轮询必须使用异步处理方式。</p><p>流程:</p><ul><li>请求发送到服务器。</li><li>服务器在有新数据之前不会响应请求。</li><li>当新数据出现、或超过预设等待时间时，服务器将对其请求作出响应。</li><li>浏览器立即发出一个新的请求。</li></ul><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-5.png" class="" title="异步处理请求"><p>如上图，在主线程中开启异步处理，主线程将请求交给其他线程去处理，主线程就结束了，被放回了主线程池，由其他线程继续处理请求，可以避免主线程池线程耗尽，起到容器线池程和工作线程池隔离的效果。</p><h2 id="案例描述"><a href="#案例描述" class="headerlink" title="案例描述"></a>案例描述</h2><p>用户在网页使用微信扫码登陆，使用手机app扫码后微信服务器向后端服务器回调扫码事件，由于前端无法感知到用户手机扫码的行为，所以停留在扫码登陆页面时需要持续轮询后端服务器用户是否已扫码登录，造成服务器的较大压力，于是利用Servlet3.0的异步特性，实现长轮询的方式来通信。</p><p>前端的扫码登录页面向后端请求微信登录二维码，后端返回微信登录二维码给前端时附带随机生成的scene_id，前端显示二维码供用户手机微信扫码，前端持续轮询后端用户是否已扫码（上一次轮询未成功登陆为开启下一次轮询的条件），但需带上scene_id以区分扫码用户，此时后端不同步返回前端请求结果，而是以异步响应式的方式等待微信服务器回调后，或是超过指定时间例如30秒后再返回（可能用户打开登陆页面后停留但未成功扫码），大大减少了前端访问后端的次数。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>实现即时通讯常见的有四种方式，分别是：轮询、长轮询(comet)、长连接(SSE)、WebSocket。</p><h2 id="介绍">介绍</h2><h3 id="轮询">轮询</h3><p>拉模式，不管服务端数据有无更新，客户端利用Ajex定时发送请求拉取一次数据，可能有更新数据返回，也可能什么都没有。<br><strong>优点</strong>: 后端编码简单<br><strong>缺点</strong>: 数据延迟、消耗资源过大、请求次数太多</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image.png" class="" title="轮询"><h3 id="长轮询-comet">长轮询(comet)</h3><p>客户端发起长轮询，如果服务端的数据没有发生变更，会hold住请求，直到服务端的数据发生变化，或者等待一定时间超时才会返回。返回后，客户端再发起下一次长轮询请求监听。<br><strong>优点</strong>:</p><ul class="lvl-0"><li class="lvl-2"><p>相较于轮询基本不存在消息延迟，请求次数降低很多</p></li><li class="lvl-2"><p>长轮询是在 XMLHttpRequest 之后实现的，它几乎得到了设备的普遍支持，因此通常很少需要有进一步的备选方案，在很多场景下，可以作为即时通信的最简单实现方案和兜底兼容方案。</p></li></ul><p><strong>缺点</strong>:服务器一直保持连接会消耗资源，需要同时维护多个线程，而服务器所能承载的 TCP 连接是有上限的，所以这种轮询很容易导致连接上限。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-2.png" class="" title="长轮询"><h3 id="长连接-SSE">长连接(SSE)</h3><p>客户端和服务端建立连接后不进行断开，之后客户端再次访问这个服务端上的内容时，继续使用这一条连接通道<br><strong>优点</strong>: 消息即时到达，不发无用请求<br><strong>缺点</strong>: 与长轮询一样，服务器一直保持连接是会消耗资源的，如果有大量的长连接的话，对于服务器的消耗是巨大的，而且服务器承受能力是有上限的，不可能维持无限个长连接。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-3.png" class="" title="SSE"><h3 id="WebSocket">WebSocket</h3><p>客户端向服务器发送一个携带特殊信息的请求头（Upgrade:WebSocket ）建立连接，建立连接后双方即可实现自由的实时双向通信。<br><strong>优点</strong>:</p><ul class="lvl-0"><li class="lvl-2"><p>较少的控制开销。在连接创建后，服务器和客户端之间交换数据时，用于协议控制的数据包头部相对较小。</p></li><li class="lvl-2"><p>更强的实时性。由于协议是全双工的，所以服务器可以随时主动给客户端下发数据。相对于HTTP请求需要等待客户端发起请求服务端才能响应，延迟明显更少；即使是和Comet等类似的长轮询比较，其也能在短时间内更多次地传递数据。</p></li><li class="lvl-2"><p>保持连接状态。与HTTP不同的是，Websocket需要先创建连接，这就使得其成为一种有状态的协议，之后通信时可以省略部分状态信息。而HTTP请求可能需要在每个请求都携带状态信息（如身份认证等）。</p></li></ul><p><strong>缺点</strong>: 相对来说，开发成本和难度更高。例如，当连接终止时，WebSockets 无法自动恢复连接。</p><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-4.png" class="" title="WebSocket"><h2 id="长轮询">长轮询</h2><p>长轮询挂起请求，等待新数据更新后再响应的处理方式虽然能减少浏览器的请求次数，并带来即时性，但是如果使用同步处理请求的方式，挂起请求则代表了线程的阻塞，有多少长轮询请求未响应就代表要阻塞多少个Servlet线程。所以长轮询必须使用异步处理方式。</p><p>流程:</p><ul class="lvl-0"><li class="lvl-2"><p>请求发送到服务器。</p></li><li class="lvl-2"><p>服务器在有新数据之前不会响应请求。</p></li><li class="lvl-2"><p>当新数据出现、或超过预设等待时间时，服务器将对其请求作出响应。</p></li><li class="lvl-2"><p>浏览器立即发出一个新的请求。</p></li></ul><img src="/2023/06/22/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/image-5.png" class="" title="异步处理请求"><p>如上图，在主线程中开启异步处理，主线程将请求交给其他线程去处理，主线程就结束了，被放回了主线程池，由其他线程继续处理请求，可以避免主线程池线程耗尽，起到容器线池程和工作线程池隔离的效果。</p><h2 id="案例描述">案例描述</h2><p>用户在网页使用微信扫码登陆，使用手机app扫码后微信服务器向后端服务器回调扫码事件，由于前端无法感知到用户手机扫码的行为，所以停留在扫码登陆页面时需要持续轮询后端服务器用户是否已扫码登录，造成服务器的较大压力，于是利用Servlet3.0的异步特性，实现长轮询的方式来通信。</p><p>前端的扫码登录页面向后端请求微信登录二维码，后端返回微信登录二维码给前端时附带随机生成的scene_id，前端显示二维码供用户手机微信扫码，前端持续轮询后端用户是否已扫码（上一次轮询未成功登陆为开启下一次轮询的条件），但需带上scene_id以区分扫码用户，此时后端不同步返回前端请求结果，而是以异步响应式的方式等待微信服务器回调后，或是超过指定时间例如30秒后再返回（可能用户打开登陆页面后停留但未成功扫码），大大减少了前端访问后端的次数。</p><p>编辑时间</p>]]></content>
     
     
     <categories>
@@ -27,7 +90,7 @@
     <link href="/2023/06/22/hexo-github/"/>
     <url>/2023/06/22/hexo-github/</url>
     
-    <content type="html"><![CDATA[<h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p>​Hexo是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h2 id="Hexo-结构"><a href="#Hexo-结构" class="headerlink" title="Hexo 结构"></a>Hexo 结构</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml">.<br>├── _config.yml                     <br>├── package.json<br>├── public                   // 公共文件夹，这个文件夹用于存放生成的站点文件。<br>├── scaffolds                // 模板文件夹，存储page、draft、page的模板<br>├── source                   // 资源文件夹，这个文件夹用来存放内容。<br>|   ├── _drafts                     <br>|   └── _posts<br>└── themes<br></code></pre></td></tr></table></figure><h2 id="Hexo-写作"><a href="#Hexo-写作" class="headerlink" title="Hexo 写作"></a>Hexo 写作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new [layout] &lt;title&gt;  # 创建一篇新文章或者新页面<br></code></pre></td></tr></table></figure><p>layout: 文章的布局，通过_config.yml中的default_layout参数指定默认布局</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">git init<br>git add .<br>git commit -m &quot;first commit&quot;<br>git branch -M main<br>git remote <br>git <br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="Hexo简介">Hexo简介</h2><p>​Hexo是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h2 id="Hexo-结构">Hexo 结构</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml">.<br>├── _config.yml                     <br>├── package.json<br>├── public                   // 公共文件夹，这个文件夹用于存放生成的站点文件。<br>├── scaffolds                // 模板文件夹，存储page、draft、page的模板<br>├── source                   // 资源文件夹，这个文件夹用来存放内容。<br>|   ├── _drafts                     <br>|   └── _posts<br>└── themes<br></code></pre></td></tr></table></figure><h2 id="Hexo-写作">Hexo 写作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo new [layout] &lt;title&gt;  # 创建一篇新文章或者新页面<br></code></pre></td></tr></table></figure><p>layout: 文章的布局，通过_config.yml中的default_layout参数指定默认布局</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">git init<br>git add .<br>git commit -m &quot;first commit&quot;<br>git branch -M main<br>git remote <br>git <br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
