@@ -562,7 +562,7 @@ post:
       # 格式参照 ISO-8601 日期格式化
       # ISO-8601 date format
       # See: http://momentjs.cn/docs/#/parsing/string-format/
-      format: "LL a"
+      format: "YYYY-MM-DD hh:mm:ss, dddd"
 
     # 字数统计
     # Word count
@@ -592,12 +592,13 @@ post:
   # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
   # Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)
   updated:
-    enable: false
+    enable: true
 
     # 格式参照 ISO-8601 日期格式化
     # ISO-8601 date format
     # See: http://momentjs.cn/docs/#/parsing/string-format/
-    date_format: "LL a"
+    # date_format: "LL a"
+    date_format: "YYYY-MM-DD hh:mm:ss, dddd"
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
@@ -665,14 +666,14 @@ post:
     # 显示发布日期
     # Show post date
     post_date:
-      enable: true
-      format: "LL"
+      enable: false
+      format: "YYYY-MM-DD hh:mm:ss, dddd"
 
     # 显示更新日期
     # Show update date
     update_date:
       enable: false
-      format: "LL"
+      format: "YYYY-MM-DD hh:mm:ss, dddd"
 
   # 文章底部上一篇下一篇功能
   # Link to previous/next post
@@ -955,7 +956,7 @@ about:
   banner_mask_alpha: 0.3
   avatar: /img/avatar.gif
   name: "Gs"
-  intro: "临渊羡鱼，不如退而结网。"
+  intro: "临渊羡鱼，不如退而结网。对于不能改变的，给我勇气去接受，对于能改变的，请给我力量去改变"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
