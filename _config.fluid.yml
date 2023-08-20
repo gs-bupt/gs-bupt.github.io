@@ -428,8 +428,7 @@ footer:
   content: '
     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
     <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
-  '
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>'
 
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
@@ -956,7 +955,7 @@ about:
   banner_mask_alpha: 0.3
   avatar: /img/avatar.gif
   name: "Gs"
-  intro: "临渊羡鱼，不如退而结网。对于不能改变的，给我勇气去接受，对于能改变的，请给我力量去改变"
+  intro: "给别人带来快乐是一件很酷的事！！！"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
