@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>springboot中静态资源无法访问</title>
+    <link href="/2023/08/21/springboot%E4%B8%AD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/"/>
+    <url>/2023/08/21/springboot%E4%B8%AD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/</url>
+    
+    <content type="html"><![CDATA[<h3 id="问题描述">问题描述</h3><p>在使用Spring Boot以及Vue开发过程中，在将Vue的文件进行打包生成静态文件后，生成了一个resources文件夹，其中包含了html、css、js等文件，也就是在后端开发中的classpath:/resources/目录，并且在Spring Boot的配置文件中设置了如下配置：</p><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.mvc.static-path-pattern</span>=<span class="hljs-string">/**</span><br><span class="hljs-attr">spring.web.resources.static-locations</span>=<span class="hljs-string">classpath:/public/</span><br></code></pre></td></tr></table></figure><p>但是在启动后Spring Boot项目后，访问静态资源时，发现无法访问到静态资源，而是直接返回了404错误，如下图所示：</p><h3 id="解决思路">解决思路</h3><p>首先检查代码中是否使用了<code>@EnableWebMVC</code>注解，众所周知，Spring Boot为Spring MVC提供了自动配置功能，但是同时Spring Boot也提供了定制功能，如果想保留那些Spring Boot MVC定制，并进行更多的 <a href="https://docs.spring.io/spring-framework/docs/6.1.0-M1/reference/html/web.html#mvc">MVC定制</a>（Interceptor、Formatter、视图控制器和其他功能），可以添加你自己的 <code>@Configuration</code> 类，类型为 <code>WebMvcConfigurer</code> ，但 <strong>必须必须不</strong> 含 <code>@EnableWebMvc</code>注解。</p><p>但是如果你想要完全控制Spring MVC，你可以添加你自己的 <code>@Configuration</code> 并使用 <code>@EnableWebMvc</code> 注解 ，或者添加你自己的 <code>@Configuration</code> 并使用 <code>DelegatingWebMvcConfiguration</code> 注解 ，如 <code>@EnableWebMvc</code> 的Javadoc中所述。</p><p>也就是说如果你想要使用配置文件对Spring Boot框架中的Spring Web MVC进行定制，那么就不要加上<code>@EnableWebMvc</code>注解。</p><h3 id="问题原理">问题原理</h3><p>Spring Boot为Spring MVC提供了自动配置功能，接下来分析一下<code>WebMvcAutoConfiguration</code>配置类。</p><img src="/2023/08/21/springboot%E4%B8%AD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/image-20230821200546293.png" class="" title="image-20230821200546293"><p>重点在于上面的两个注解，分别是</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ConditionalOnClass(&#123;Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class&#125;)</span><br><span class="hljs-meta">@ConditionalOnMissingBean(&#123;WebMvcConfigurationSupport.class&#125;)</span><br></code></pre></td></tr></table></figure><p><code>@ConditionalOnClass</code> 和 <code>@ConditionalOnMissingClass</code> 注解让 <code>@Configuration</code> 类基于特定类的存在或不存在而被包含。 由于注解元数据是通过使用 <a href="https://asm.ow2.io/">ASM</a> 来解析的，你可以使用 <code>value</code> 属性来引用真正的类，即使该类可能没有实际出现在运行的应用程序classpath上。 如果你想通过使用 <code>String</code> 值来指定类的名称，你也可以使用 <code>name</code> 属性。</p><p>其中我们要关注一个类，就是<code>WebMvcConfigurationSupport</code>，上面的意思是如果出现了这个类，那么<code>WebMvcAutoConfiguration</code>配置类就不会生效。</p><p>接着查看<code>@EnableWebMvc</code>注解:</p><img src="/2023/08/21/springboot%E4%B8%AD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/image-20230821201258432.png" class="" title="image-20230821201258432"><p>其中包含了一个导入注解，也就是导入<code>DelegatingWebMvcConfiguration</code>这个类，<code>DelegatingWebMvcConfiguration</code>与<code>WebMvcConfigurationSupport</code>有什么关系呢?</p><p>我们接着查看<code>DelegatingWebMvcConfiguration</code>这个类的声明:</p><img src="/2023/08/21/springboot%E4%B8%AD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/image-20230821201536693.png" class="" title="image-20230821201536693"><p>可以看到它继承了<code>WebMvcConfigurationSupport</code>这个类，也就是说当你使用了<code>@EnableWebMvc</code>注解之后，Spring Boot的<code>WebMvcAutoConfiguration</code>配置类就不会起作用，那么也就是说你的配置文件就不会生效了。</p><p>在使用了<code>@EnableWebMvc</code>注解之后，如果你想要使用静态资源，只需要在你的自定义配置类中重写addResourceHandlers方法即可。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>Spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Spring</tag>
+      
+      <tag>Spring MVC</tag>
+      
+      <tag>Spring Boot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>transformer</title>
     <link href="/2023/08/20/transformer/"/>
     <url>/2023/08/20/transformer/</url>
