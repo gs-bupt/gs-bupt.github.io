@@ -1,9 +1,13 @@
 ---
 title: transformer
-categories: 其他
-excerpt: 摘要
+categories: 
+  - 深度学习
+excerpt: 本文主要介绍transformer模型的原理，以可视化的方式展示transformer模型的推理过程。
 date: 2023-08-20 15:56:16
-tags:
+tags: 
+  - 机器学习
+  - 自然语言处理
+  - 人工智能
 ---
 
 翻译自http://jalammar.github.io/illustrated-transformer/
@@ -14,11 +18,11 @@ tags:
 
 ![img](2023-08-20-transformer/the_transformer_3.png)
 
-打开这个擎天柱的内部，我们可以看到编码组件、解码组件以及它们之间的连接。
+打开这个擎天柱的内部，我们可以看到编码器端、解码器端以及它们之间的连接。(因为这篇论文提出的模型叫做transformer，而在英语中还有变形金刚的意思，而在变形金刚中擎天柱是汽车人的领导者。)
 
 ![img](2023-08-20-transformer/The_transformer_encoders_decoders.png)
 
-编码组件是由一堆编码器堆叠而成(在transformer论文中，使用了6层)，解码组件也是同样数量的解码器的堆叠。
+编码器端是由一堆编码器堆叠而成(在transformer论文中，使用了6层)，解码器端也是同样数量的解码器的堆叠。
 
 ![img](2023-08-20-transformer/The_transformer_encoder_decoder_stack.png)
 
@@ -131,7 +135,7 @@ softmax分数表示了每个词对当前词位置的注意力权重。当前词�
 这篇论文通过添加一种多头注意力机制进一步改进了自注意力层。这从两个方面提高了注意力层的性能:
 
 1. 它扩展了模型关注不同位置的能力。在上面的例子中，z1包含了每一个其他编码的一小部分,但它可能会被词本身主导。如果我们正在翻译这样一句话:“The animal didn’t cross the street because it was too tired”,知道“it”指的是哪个词会很有用。
-2. 它为注意力层提供了多个“表示子空间”。接下来我们会看到，使用多头注意力,我们不仅有一个，而是有多个查询/键/值权重矩阵组（Transformer使用8个注意力头,所以我们最终会为每个编码器/解码器得到8个组）。每个组都是随机初始化的。然后,，在训练后，每个组用于将输入嵌入(或来自下层编码器/解码器的向量)投影到不同的表示子空间中。
+2. 它为注意力层提供了多个“表示子空间”。接下来我们会看到，使用多头注意力,我们不仅有一个，而是有多个查询/键/值权重矩阵组（Transformer使用8个注意力头,所以我们最终会为每个编码器/解码器得到8个组）。每个组都是随机初始化的。然后，在训练后，每个组用于将输入嵌入(或来自下层编码器/解码器的向量)投影到不同的表示子空间中。
 
 ![img](2023-08-20-transformer/transformer_attention_heads_qkv.png)
 
@@ -221,7 +225,7 @@ softmax分数表示了每个词对当前词位置的注意力权重。当前词�
 
 在解码器中，自注意力层只允许关注输出序列中的先前位置。这是通过在自注意力计算的softmax步骤之前，屏蔽(设置为`-inf`)未来位置来完成的。
 
-“encoder-decoder attention”层的工作方式与多头自注意力层类似，只不过它从下层获取Query，并从编码组件的输出中获取Key和Value。
+“encoder-decoder attention”层的工作方式与多头自注意力层类似，只不过它从下层获取Query，并从编码器端的输出中获取Key和Value。
 
 总结解码器端的工作流程:
 
@@ -305,7 +309,7 @@ softmax分数表示了每个词对当前词位置的注意力权重。当前词�
 
 我希望这对您开启与Transformer的主要概念的破冰之旅有所帮助。如果您想深入了解，我建议您采取以下后续步骤:
 
-- 阅读 [Attention Is All You Need](https://arxiv.org/abs/1706.03762) l论文，Transformer博客 ([Transformer: A Novel Neural Network Architecture for Language Understanding](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html))，和 [Tensor2Tensor announcement](https://ai.googleblog.com/2017/06/accelerating-deep-learning-research.html)。
+- 阅读 [Attention Is All You Need](https://arxiv.org/abs/1706.03762) 论文，Transformer博客 ([Transformer: A Novel Neural Network Architecture for Language Understanding](https://ai.googleblog.com/2017/08/transformer-novel-neural-network.html))，和 [Tensor2Tensor announcement](https://ai.googleblog.com/2017/06/accelerating-deep-learning-research.html)。
 - 观看 [Łukasz Kaiser的演讲](https://www.youtube.com/watch?v=rBCqOTEfxvg) ，详细介绍该模型以及细节。
 - 使用 [Tensor2Tensor仓库提供的 Jupyter Notebook](https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb)。
 - 探索[Tensor2Tensor仓库](https://github.com/tensorflow/tensor2tensor)。
