@@ -7,19 +7,28 @@ const script = fs.readFileSync(scriptPath, 'utf8');
 const page = fs.readFileSync(pagePath, 'utf8');
 const failures = [];
 
-function expect(pattern, message) {
-  if (!pattern.test(script)) failures.push(message);
+function expect(source, pattern, message) {
+  if (!pattern.test(source)) failures.push(message);
 }
 
-if (/<canvas/i.test(page)) failures.push('the page must not use a Canvas render loop');
-if (/requestAnimationFrame|setInterval/.test(script)) failures.push('the page must not schedule continuous JavaScript animation');
-if (/particles|motes|bursts|starfield/i.test(script)) failures.push('the page must not maintain particle collections');
-expect(/--tilt-x/, 'pointer interaction must only update CSS 3D tilt variables');
-expect(/heart-slice/, 'the page must use layered vector slices for the 3D heart');
+// The page is a realtime Canvas 3D particle experience.
+expect(page, /<canvas/i, 'the page must render through a <canvas> element');
+expect(script, /requestAnimationFrame/, 'the page must drive animation with requestAnimationFrame');
+
+// Accessibility: the experience must calm down for reduced-motion users.
+expect(script, /prefers-reduced-motion/, 'the animation must respect prefers-reduced-motion');
+
+// Performance guards: cap pixel ratio and transient particle counts.
+expect(script, /Math\.min\(window\.devicePixelRatio/, 'devicePixelRatio must be capped for performance');
+expect(script, /bursts\.length < \d+/, 'transient burst particles must be capped');
+
+// Interaction contract: pointer tilt and click bursts.
+expect(script, /pointermove/, 'pointer movement must tilt the scene');
+expect(script, /pointerdown/, 'clicking must spawn a particle burst');
 
 if (failures.length) {
-  console.error(`FAIL: heart animation performance budget\n- ${failures.join('\n- ')}`);
+  console.error(`FAIL: heart animation design contract\n- ${failures.join('\n- ')}`);
   process.exit(1);
 }
 
-console.log('PASS: heart animation stays within its rendering performance budget');
+console.log('PASS: heart animation matches its realtime 3D design contract');

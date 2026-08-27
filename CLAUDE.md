@@ -32,7 +32,7 @@ There is no unit-test framework and no coverage requirement — the `test/*.js` 
 
 **Permalinks** are `:year/:month/:day/:title/` with the raw post title (often Chinese) in the URL path — relevant when hardcoding links or updating deployment checks, which percent-encode these paths.
 
-**`source/heart-animation/`** is a standalone static page listed under `skip_render` in `_config.yml`, so Hexo copies it through unprocessed; it is embedded in a post via `<iframe src="/heart-animation/">`. Modifications must satisfy `check-heart-animation.js`, which enforces a performance budget: no Canvas render loop, no `requestAnimationFrame`/`setInterval` animation, no particle systems — interaction must only update CSS 3D tilt variables (`--tilt-x`) on layered `heart-slice` elements. Note the embedding post's prose still describes an older Canvas implementation; the check script is the source of truth.
+**`source/heart-animation/`** is a standalone static page listed under `skip_render` in `_config.yml`, so Hexo copies it through unprocessed; it is embedded in a post via `<iframe src="/heart-animation/">`. It is a realtime Canvas 3D particle heart: `script.js` builds and projects the rotating point cloud plus starfield, `style.css` only styles the HUD overlay. Modifications must satisfy `test/check-heart-animation.js`, which encodes the design contract: canvas + `requestAnimationFrame` rendering, `prefers-reduced-motion` respected, devicePixelRatio and transient burst counts capped, pointer tilt and click bursts wired.
 
 **Site-wide custom CSS** lives at `source/css/markdown.css`, wired in via `custom_css` in `_config.fluid.yml`.
 

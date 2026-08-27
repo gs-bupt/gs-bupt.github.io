@@ -3,50 +3,37 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#090916">
-    <meta name="description" content="心动星河：一张轻量的 3D 心形互动页面">
+    <meta name="theme-color" content="#070712">
+    <meta name="description" content="心动星河：全屏 3D 粒子心形互动页">
     <title>心动星河</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+SC:wght@500;600&display=swap">
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <main class="experience">
-      <header class="masthead">
-        <a class="brand" href="/" aria-label="返回博客首页"><span>◈</span> Gs-Blog</a>
-        <span>MINIMAL 3D STUDY · 2026</span>
-      </header>
+    <canvas id="scene" aria-label="3D 粒子心形星河动画" role="img"></canvas>
 
-      <section class="hero" aria-labelledby="page-title">
-        <div class="copy">
-          <p class="kicker">A QUIET MOMENT, IN THREE DIMENSIONS</p>
-          <h1 id="page-title">心动<br><em>星河</em></h1>
-          <p class="lead" id="quote" aria-live="polite">有些光，不必喧闹，也足够照亮彼此。</p>
-          <div class="actions" aria-label="互动控制">
-            <button class="action primary" id="igniteButton" type="button">切换光影</button>
-            <button class="action secondary" id="fullscreenButton" type="button">全屏沉浸</button>
-          </div>
-        </div>
+    <header class="hud hud-top">
+      <a class="brand" href="/" aria-label="返回博客首页"><span>✦</span> Gs-Blog</a>
+      <span class="hud-note">CANVAS · 3D PARTICLES · REALTIME</span>
+    </header>
 
-        <div class="heart-stage" id="heartStage">
-          <p class="hint">移动鼠标，让心脏转向光</p>
-          <button class="heart-button" id="heartButton" type="button" aria-label="点击切换心形光影">
-            <span class="heart-stack" aria-hidden="true">
-              <svg class="heart-slice slice-1" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-2" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-3" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-4" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-5" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-6" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-7" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice slice-8" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
-              <svg class="heart-slice heart-front" viewBox="0 0 180 180"><defs><linearGradient id="front-gradient" x1="30" y1="22" x2="146" y2="157" gradientUnits="userSpaceOnUse"><stop stop-color="#fff8fb" /><stop offset=".28" stop-color="#f9b7d4" /><stop offset=".66" stop-color="#d74983" /><stop offset="1" stop-color="#6436a8" /></linearGradient></defs><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /><path class="shine" d="M50 57C57 45 75 42 82 53" /></svg>
-            </span>
-          </button>
-          <span class="base-shadow" aria-hidden="true"></span>
-        </div>
-      </section>
+    <div class="hud hud-side">
+      <p class="kicker">α SCORPII · 心宿二 · THE HEART STAR</p>
+      <h1 id="page-title">心动<em>星河</em></h1>
+    </div>
 
-      <footer class="footer-note"><span>NO CANVAS · NO PARTICLES · NO LOOP</span><a href="/2026/08/27/heart-animation/">创作说明 ↗</a></footer>
-    </main>
+    <p class="hud quote" id="quote" aria-live="polite">有些光，不必喧闹，也足够照亮彼此。</p>
+
+    <footer class="hud hud-bottom">
+      <p class="hint">移动鼠标倾斜星河 · 点击心形迸发粒子</p>
+      <div class="actions" aria-label="互动控制">
+        <button class="action primary" id="igniteButton" type="button">点亮星河</button>
+        <button class="action ghost" id="fullscreenButton" type="button">全屏沉浸</button>
+      </div>
+    </footer>
+
     <script src="./script.js" defer></script>
   </body>
 </html>
