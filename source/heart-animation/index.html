@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#08051d">
+    <meta name="description" content="心动星河：一张可交互的动态心形页面">
+    <title>心动星河</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="aurora aurora-one" aria-hidden="true"></div>
+    <div class="aurora aurora-two" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="experience">
+      <header class="masthead">
+        <a class="brand" href="/" aria-label="返回博客首页">
+          <span class="brand-mark">✦</span> Gs-Blog
+        </a>
+        <span class="eyebrow">INTERACTIVE LOVE LAB · 2026</span>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <p class="kicker">在无垠的宇宙里，找到同频的光</p>
+        <h1 id="page-title">心动<span>星河</span></h1>
+        <p class="lead" id="quote" aria-live="polite">每一次心跳，都值得被整个宇宙听见。</p>
+
+        <div class="heart-wrap" id="heartStage">
+          <div class="halo halo-outer" aria-hidden="true"></div>
+          <div class="halo halo-inner" aria-hidden="true"></div>
+          <div class="orbit orbit-a" aria-hidden="true"><i></i></div>
+          <div class="orbit orbit-b" aria-hidden="true"><i></i></div>
+          <button class="heart-button" id="heartButton" type="button" aria-label="点击释放心形光芒">
+            <span class="heart-shadow"></span>
+            <span class="heart-core"><span class="heart-sheen"></span></span>
+            <span class="heart-flare"></span>
+          </button>
+          <span class="heart-hint">点击心脏 · 释放光芒</span>
+        </div>
+
+        <div class="actions" aria-label="互动控制">
+          <button class="action action-primary" id="igniteButton" type="button"><span>✦</span> 点亮星河</button>
+          <button class="action action-secondary" id="fullscreenButton" type="button"><span>⛶</span> 全屏沉浸</button>
+        </div>
+      </section>
+
+      <footer class="footer-note">
+        <span>MOVE · CLICK · FEEL</span>
+        <a href="/2026/08/27/heart-animation/">查看创作说明 <b>↗</b></a>
+      </footer>
+    </main>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
