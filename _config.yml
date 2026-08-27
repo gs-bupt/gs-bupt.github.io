@@ -127,6 +127,7 @@ markdown:
     - markdown-it-checkbox
     - markdown-it-imsize
     - markdown-it-expandable
+    - "@renbaoshuo/markdown-it-katex"
     - name: markdown-it-container
       options: success
     - name: markdown-it-container
