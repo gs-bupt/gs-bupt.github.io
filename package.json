@@ -2,8 +2,14 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "npm@10.9.4",
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=10 <11"
+  },
   "scripts": {
     "build": "hexo generate",
+    "check": "npm run build",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
