@@ -3,53 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#08051d">
-    <meta name="description" content="心动星河：一张可交互的动态心形页面">
+    <meta name="theme-color" content="#090916">
+    <meta name="description" content="心动星河：一张轻量的 3D 心形互动页面">
     <title>心动星河</title>
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <canvas id="starfield" aria-hidden="true"></canvas>
-    <div class="aurora aurora-one" aria-hidden="true"></div>
-    <div class="aurora aurora-two" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-
     <main class="experience">
       <header class="masthead">
-        <a class="brand" href="/" aria-label="返回博客首页">
-          <span class="brand-mark">✦</span> Gs-Blog
-        </a>
-        <span class="eyebrow">INTERACTIVE LOVE LAB · 2026</span>
+        <a class="brand" href="/" aria-label="返回博客首页"><span>◈</span> Gs-Blog</a>
+        <span>MINIMAL 3D STUDY · 2026</span>
       </header>
 
       <section class="hero" aria-labelledby="page-title">
-        <p class="kicker">在无垠的宇宙里，找到同频的光</p>
-        <h1 id="page-title">心动<span>星河</span></h1>
-        <p class="lead" id="quote" aria-live="polite">每一次心跳，都值得被整个宇宙听见。</p>
-
-        <div class="heart-wrap" id="heartStage">
-          <div class="halo halo-outer" aria-hidden="true"></div>
-          <div class="halo halo-inner" aria-hidden="true"></div>
-          <div class="orbit orbit-a" aria-hidden="true"><i></i></div>
-          <div class="orbit orbit-b" aria-hidden="true"><i></i></div>
-          <button class="heart-button" id="heartButton" type="button" aria-label="点击释放心形光芒">
-            <span class="heart-shadow"></span>
-            <span class="heart-core"><span class="heart-sheen"></span></span>
-            <span class="heart-flare"></span>
-          </button>
-          <span class="heart-hint">点击心脏 · 释放光芒</span>
+        <div class="copy">
+          <p class="kicker">A QUIET MOMENT, IN THREE DIMENSIONS</p>
+          <h1 id="page-title">心动<br><em>星河</em></h1>
+          <p class="lead" id="quote" aria-live="polite">有些光，不必喧闹，也足够照亮彼此。</p>
+          <div class="actions" aria-label="互动控制">
+            <button class="action primary" id="igniteButton" type="button">切换光影</button>
+            <button class="action secondary" id="fullscreenButton" type="button">全屏沉浸</button>
+          </div>
         </div>
 
-        <div class="actions" aria-label="互动控制">
-          <button class="action action-primary" id="igniteButton" type="button"><span>✦</span> 点亮星河</button>
-          <button class="action action-secondary" id="fullscreenButton" type="button"><span>⛶</span> 全屏沉浸</button>
+        <div class="heart-stage" id="heartStage">
+          <p class="hint">移动鼠标，让心脏转向光</p>
+          <button class="heart-button" id="heartButton" type="button" aria-label="点击切换心形光影">
+            <span class="heart-stack" aria-hidden="true">
+              <svg class="heart-slice slice-1" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-2" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-3" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-4" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-5" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-6" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-7" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice slice-8" viewBox="0 0 180 180"><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /></svg>
+              <svg class="heart-slice heart-front" viewBox="0 0 180 180"><defs><linearGradient id="front-gradient" x1="30" y1="22" x2="146" y2="157" gradientUnits="userSpaceOnUse"><stop stop-color="#fff8fb" /><stop offset=".28" stop-color="#f9b7d4" /><stop offset=".66" stop-color="#d74983" /><stop offset="1" stop-color="#6436a8" /></linearGradient></defs><path d="M90 154C75 136 29 107 29 68C29 44 47 29 67 29C78 29 86 34 90 42C94 34 102 29 113 29C133 29 151 44 151 68C151 107 105 136 90 154Z" /><path class="shine" d="M50 57C57 45 75 42 82 53" /></svg>
+            </span>
+          </button>
+          <span class="base-shadow" aria-hidden="true"></span>
         </div>
       </section>
 
-      <footer class="footer-note">
-        <span>MOVE · CLICK · FEEL</span>
-        <a href="/2026/08/27/heart-animation/">查看创作说明 <b>↗</b></a>
-      </footer>
+      <footer class="footer-note"><span>NO CANVAS · NO PARTICLES · NO LOOP</span><a href="/2026/08/27/heart-animation/">创作说明 ↗</a></footer>
     </main>
     <script src="./script.js" defer></script>
   </body>

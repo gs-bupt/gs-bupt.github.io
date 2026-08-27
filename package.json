@@ -9,9 +9,10 @@
   },
   "scripts": {
     "build": "hexo generate",
-    "check": "npm run build && npm run check:math && npm run check:site",
+    "check": "npm run build && npm run check:math && npm run check:site && npm run check:heart",
     "check:math": "node test/check-math-rendering.js",
     "check:site": "node test/check-site.js",
+    "check:heart": "node test/check-heart-animation.js",
     "check:deployment": "node test/check-deployment.js",
     "clean": "hexo clean",
     "server": "hexo server"
