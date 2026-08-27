@@ -3,7 +3,7 @@ title: springboot中静态资源无法访问
 categories: 
   - Java
   - Spring
-excerpt: 摘要
+excerpt: 记录 Spring Boot 静态资源访问 404 的排查过程：@EnableWebMvc 注解会关闭 Spring Boot 的 MVC 自动配置。
 date: 2023-08-21 19:14:03
 tags: 
   - Spring

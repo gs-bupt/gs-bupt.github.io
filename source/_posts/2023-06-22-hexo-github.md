@@ -1,7 +1,7 @@
 ---
 title: hexo+github
 categories: 其他
-excerpt: 摘要
+excerpt: 介绍 Hexo 静态博客框架：从目录结构、常用命令到将博客部署至 GitHub 的基本流程。
 date: 2023-06-22 19:12:17
 tags:
 ---

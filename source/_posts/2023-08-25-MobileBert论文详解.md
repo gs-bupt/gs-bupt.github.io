@@ -1,7 +1,7 @@
 ---
 title: MobileBert论文详解
 categories: 其他
-excerpt: 摘要
+excerpt: MobileBERT 论文的阅读笔记，涉及注意力迁移等模型压缩技术。
 date: 2023-08-25 23:53:39
 tags: 
   - 深度学习

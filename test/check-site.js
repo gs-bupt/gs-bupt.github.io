@@ -34,6 +34,11 @@ for (const filePath of walkMarkdownFiles(postsDir)) {
       const fieldPattern = new RegExp(`^${field}:\\s*\\S`, 'mu');
       if (!fieldPattern.test(frontMatter[1])) report(filePath, `missing ${field}`);
     }
+
+    const excerptMatch = frontMatter[1].match(/^excerpt:\s*(.+)$/mu);
+    if (excerptMatch && excerptMatch[1].trim() === '摘要') {
+      report(filePath, 'excerpt is still the scaffold placeholder "摘要"; write a real summary');
+    }
   }
 
   const imagePattern = /!\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))/gu;

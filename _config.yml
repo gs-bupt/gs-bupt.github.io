@@ -81,9 +81,12 @@ meta_generator: true
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
-time_format: hh:mm:ss
+time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: "mtime"
+# 'date' keeps the displayed update time stable in CI (git checkout resets file
+# mtimes, which 'mtime' would surface as a fake update on every deployment).
+# Set an explicit `updated` field in front matter when a post is actually revised.
+updated_option: "date"
 
 # Pagination
 ## Set per_page to 0 to disable pagination

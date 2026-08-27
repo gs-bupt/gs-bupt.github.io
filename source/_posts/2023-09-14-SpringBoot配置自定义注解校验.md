@@ -2,7 +2,7 @@
 title: SpringBoot配置自定义注解校验
 categories:
   - SpringBoot
-excerpt: 摘要
+excerpt: 记录在 Spring Boot 中配置自定义注解实现参数校验的方法。
 date: 2023-09-14 23:13:24
 tags:
   - Spring

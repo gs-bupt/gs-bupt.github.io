@@ -5,6 +5,10 @@ if (!siteUrl) {
   process.exit(1);
 }
 
+// The article URLs below are intentional canaries: the smoke test pins stable,
+// long-lived pages so a broken deployment is caught regardless of which posts
+// are published later. Do not rename or delete these posts without updating
+// this script.
 const formulaSlug = encodeURIComponent('知识蒸馏开山之作论文精读');
 const checks = [
   { name: 'home page', path: '/', contains: /<title[\s>]/iu },
