@@ -11,10 +11,11 @@ Hexo templates for new posts, drafts, and pages are in `scaffolds/`. Generated o
 - `npm ci` installs the exact dependency tree from `package-lock.json`; use npm with Node.js 22.
 - `npm run server` starts the local preview server; review changed pages in a browser.
 - `npm run build` generates the production site in `public/` and is the main validation command.
-- `npm run check` runs the checks required by continuous integration.
+- `npm run check` builds the site, verifies KaTeX output, front matter, post filenames, and local image references.
+- `npm run check:deployment` checks the deployed home page, Skill article, and formula article; CI runs it after a production deployment.
 - `npm run clean` removes Hexo's cache and generated output; run it before rebuilding when output looks stale.
 
-Pushes to `main` deploy automatically through GitHub Pages after the CI build succeeds. Pull requests run the same build without publishing; use the workflow's manual dispatch to republish the current commit.
+Pushes to `main` deploy automatically through GitHub Pages after the CI build succeeds, followed by a live smoke test. Pull requests run the same build without publishing and retain a seven-day downloadable site-preview artifact; use the workflow's manual dispatch to republish the current commit.
 
 ## Content Style & Naming Conventions
 
@@ -22,7 +23,7 @@ Write articles in Markdown with YAML front matter matching `scaffolds/post.md`. 
 
 ## Testing Guidelines
 
-There is no automated test framework or coverage requirement. Before submitting changes, run `npm run check` and treat any Hexo rendering error, broken asset reference, or malformed front matter as a failure. For content or styling changes, also run `npm run server` and visually check the affected post, navigation, code blocks, and images.
+There is no unit-test framework or coverage requirement. Before submitting changes, run `npm run check` and treat any Hexo rendering error, broken asset reference, or malformed front matter as a failure. For content or styling changes, also run `npm run server` and visually check the affected post, navigation, code blocks, and images.
 
 ## Commit & Pull Request Guidelines
 
