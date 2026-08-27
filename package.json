@@ -1,0 +1,38 @@
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "npm@10.9.4",
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=10 <11"
+  },
+  "scripts": {
+    "build": "hexo generate",
+    "check": "npm run build",
+    "clean": "hexo clean",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "6.3.0"
+  },
+  "dependencies": {
+    "css": "^3.0.0",
+    "hexo": "^6.3.0",
+    "hexo-all-minifier": "^0.5.7",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^3.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-image-link": "^0.0.5",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-markdown-it": "^7.1.0",
+    "hexo-renderer-stylus": "^3.0.0",
+    "hexo-server": "^3.0.0",
+    "hexo-theme-fluid": "^1.9.4",
+    "hexo-theme-landscape": "^1.0.0",
+    "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-expandable": "^1.0.2",
+    "markdown-it-imsize": "^2.0.1"
+  }
+}
